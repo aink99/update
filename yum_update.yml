@@ -1,0 +1,15 @@
+# file:  yum_update.yml (playbook)
+---
+- hosts: '{{ target }}'
+  sudo: yes
+  remote_user: chartrse
+  tasks:
+   - name: upgrade all packages
+     yum: name=* state=latest
+     async: 7200
+     poll: 30
+   #- name: Restart server
+    # shell: " sleep 3; reboot"
+    # async: 1
+    # poll: 0
+
