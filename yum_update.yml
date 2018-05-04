@@ -1,6 +1,7 @@
 # file:  yum_update.yml (playbook)
 ---
-- hosts: '{{ target }}'
+#- hosts: '{{ target }}'
+- hosts: all
   sudo: yes
   remote_user: chartrse
   tasks:
