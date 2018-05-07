@@ -8,7 +8,7 @@
       yum: name=* state=latest
 
     - name: Check for reboot hint.
-      shell: LAST_KERNEL=$(rpm -q --last kernel | awk 'NR==1{sub(/kernel-/,""); print $1}'); CURRENT_KERNEL=$(uname -r); if [ $LAST_KERNEL != $CURRENT_KERNEL ]; then echo 'reboot'; else echo 'no'; fi
+      shell: LAST_KERNEL=$(rpm -q --last kernel | awk 'NR==1{sub(/kernel-/,""); print $1}');if  echo $LAST_KERNEL|grep ^[0-9] >/dev/null  ; then echo 'ok not  lxc'; else echo 'no kernel exiting';exit; fi; CURRENT_KERNEL=$(uname -r); if [ $LAST_KERNEL != $CURRENT_KERNEL ]; then echo 'reboot'; else echo 'no'; fi
       ignore_errors: true
       register: reboot_hint
 
